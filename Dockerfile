@@ -1,5 +1,14 @@
 #specifying our base docker-image
-FROM ubuntu:14.04
+FROM ubuntu:16.04
+MAINTAINER Sahand Hariri sahandha@gmail.com
+
+####Install basics
+RUN apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
+RUN apt-get -qq update
+RUN apt-get -qq -y install wget && \
+apt-get -qq -y install bzip2
+RUN apt-get update
+RUN sudo apt-get -qq -y install software-properties-common
  
 ####installing [software-properties-common] so that we can use [apt-add-repository] to add the repository [ppa:webupd8team/java] form which we install Java8
 RUN sudo apt-get update
