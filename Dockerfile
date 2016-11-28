@@ -23,16 +23,22 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-se
 ####installing java
 RUN apt-get install -y oracle-java8-installer
 #####################################################################################
-####downloading and unpacking Spark 1.6.1 [prebuilt for Hadoop 2.6+ and scala 2.10]
-RUN wget http://spark-dist.paas.uninett.no/spark-2.0.1-bin-uninett-spark.tgz
-RUN tar -xzf spark-2.0.1-bin-uninett-spark.tgz
-RUN rm spark-2.0.1-bin-uninett-spark.tgz
-####moving the spark root folder to /opt/spark
-RUN mv spark-2.0.1-bin-uninett-spark /opt/spark
 
-ENV SPARK_MASTER_HOST master 
-####exposing port 8080 so we can later access the Spark master UI; to verify spark is running …etc.
-EXPOSE 8080 8081 7077 8888
+####installing scala
+RUN wget http://www.scala-lang.org/files/archive/scala-2.12.0.tgz
+RUN tar -xzf scala-2.12.0.tgz
+RUN rm scala-2.12.0.tgz
+RUN mv scala-2.12.0 /opt/scala
+ENV SCALA_HOME=/opt/scala
+ENV PATH=$SCALA_HOME/bin:$PATH
+
+####downloading and unpacking Spark 2.0.2
+RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.2-bin-hadoop2.7.tgz 
+RUN tar -xzf spark-2.0.2-bin-hadoop2.7.tgz 
+RUN rm spark-2.0.2-bin-hadoop2.7.tgz 
+RUN mv spark-2.0.2-bin-hadoop2.7 /opt/spark
+
+EXPOSE 8080 8081 7077 6066 8888
 #####################################################################################
 
 
@@ -45,5 +51,5 @@ COPY slave.conf /opt/conf/slave.conf
 RUN mkdir /mnt/nfs
  
 #default command: running an interactive spark shell in the local mode
-CMD ["/opt/spark/bin/pyspark", "--master", "local[*]"]
+CMD ["/opt/spark/bin/pyspark"]
 
