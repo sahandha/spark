@@ -15,6 +15,14 @@ RUN sudo apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-add-repository ppa:webupd8team/java -y
 RUN apt-get update -y
+
+####install python
+RUN apt-get install -y python
+RUN sudo apt-get install -y python-pip python-dev build-essential
+RUN pip install --upgrade pip
+RUN pip install jupyter
+ENV PATH=/home/ubuntu/.local/bin:$PATH
+
  
 ####automatically agreeing on oracle license agreement that normally pops up while installing java8
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
