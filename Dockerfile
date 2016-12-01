@@ -33,12 +33,12 @@ RUN apt-get install -y oracle-java8-installer
 #####################################################################################
 
 ####installing scala
-RUN wget http://www.scala-lang.org/files/archive/scala-2.12.0.tgz
-RUN tar -xzf scala-2.12.0.tgz
-RUN rm scala-2.12.0.tgz
-RUN mv scala-2.12.0 /opt/scala
-ENV SCALA_HOME=/opt/scala
-ENV PATH=$SCALA_HOME/bin:$PATH
+#RUN wget http://www.scala-lang.org/files/archive/scala-2.12.0.tgz
+#RUN tar -xzf scala-2.12.0.tgz
+#RUN rm scala-2.12.0.tgz
+#RUN mv scala-2.12.0 /opt/scala
+#ENV SCALA_HOME=/opt/scala
+#ENV PATH=$SCALA_HOME/bin:$PATH
 
 ####downloading and unpacking Spark 2.0.2
 RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.2-bin-hadoop2.7.tgz 
