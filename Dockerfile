@@ -40,7 +40,7 @@ RUN cd /opt \
 RUN pip install numpy scipy
 RUN rm -rf /var/lib/apt/lists/*
 
-ADD start-common.sh start-worker start-master /
+ADD start-worker start-master /
 ADD spark-defaults.conf /opt/spark/conf/spark-defaults.conf
 
 ENV PATH $PATH:/opt/spark/bin
