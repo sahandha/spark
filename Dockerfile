@@ -37,7 +37,7 @@ RUN cd /opt \
 
 # if numpy is installed on a driver it needs to be installed on all
 # workers, so install it everywhere
-RUN pip install numpy scipy
+RUN conda install numpy scipy
 RUN rm -rf /var/lib/apt/lists/*
 
 ADD log4j.properties /opt/spark/conf/log4j.properties
