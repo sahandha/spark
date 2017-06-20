@@ -32,4 +32,7 @@ ADD spark-defaults.conf /opt/spark/conf/spark-defaults.conf
 COPY master.conf /opt/conf/master.conf		
 COPY slave.conf /opt/conf/slave.conf
 
+ADD start-common.sh start-worker start-master
+ADD spark-defaults.conf /opt/spark/conf/spark-defaults.conf
+
 CMD ["/opt/spark/bin/pyspark"]
