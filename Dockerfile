@@ -35,4 +35,6 @@ COPY slave.conf /opt/conf/slave.conf
 ADD start-common.sh start-worker start-master /
 ADD spark-defaults.conf /opt/spark/conf/spark-defaults.conf
 
+ENV PYSPARK_PYTHON=/usr/local/bin/python3.5
+
 CMD ["/opt/spark/bin/pyspark"]
