@@ -4,7 +4,7 @@ MAINTAINER Sahand Hariri sahandha@gmail.com
 
 RUN apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
 RUN apt-get -qq update
-RUN apt-get -qq -y install wget && \
+RUN apt-get -qq -y install wget curl && \
 apt-get -qq -y install bzip2
 RUN apt-get update
 RUN sudo apt-get -qq -y install software-properties-common
@@ -35,6 +35,7 @@ COPY slave.conf /opt/conf/slave.conf
 ADD start-common.sh start-worker start-master /
 ADD spark-defaults.conf /opt/spark/conf/spark-defaults.conf
 
-ENV PYSPARK_PYTHON=/usr/local/bin/python3.5
+ENV PYSPARK_PYTHON=python3
+ENV PYSPARK_DRIVER_PYTHON=python3
 
 CMD ["/opt/spark/bin/pyspark"]
