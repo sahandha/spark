@@ -23,7 +23,7 @@ RUN tar xvf spark-2.0.2-bin-hadoop2.7.tgz
 RUN rm spark-2.0.2-bin-hadoop2.7.tgz
 RUN mv spark-2.0.2-bin-hadoop2.7 /opt/spark
 
-WORKDIR /external/spark-jupyter
+WORKDIR /exports/isoforest
 
 ADD log4j.properties /opt/spark/conf/log4j.properties
 ADD start-common.sh start-worker start-master /
